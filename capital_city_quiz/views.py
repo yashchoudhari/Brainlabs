@@ -13,7 +13,7 @@ class Home(View):
         countries = data.get('data', [])
         index = random.randint(0,len(countries)-1)
         if countries:
-                context["country"] = countries[index].get('name', '')
+            context["country"] = countries[index].get('name', '')
 
         return render(request , 'home.html',context)
 
