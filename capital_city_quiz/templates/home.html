@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <link rel="stylesheet"  href="{% static 'css\styles.css' %}">
+    <script src="{%static 'js\index.js' %}"></script> 
+    <title>Index</title>  
+</head>  
+<body>  
+    <div class="container">
+        <p class="head-center">Hi Sam! Welcome to guess the capital quiz!</p>
+        <p class="f-h-40">Country : {{country}}</p>
+
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <div class="form-row">
+                <label class="f-h-40">Capital city? : 
+                <input class="answer-area" name="answer"> </label>
+            </div>
+            <input name="country" value="{{country}}" hidden>
+            <div class="form-row m-t-35">
+                <button type="submit" value="Submit">Submit</button>
+                <a href="{% url 'home' %}">Next country</a>
+            </div>
+        </form>
+        <div class="m-t-35">
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li id="messages" class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+      
+    </div>
+</body>  
+</html>
